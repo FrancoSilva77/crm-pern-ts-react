@@ -4,9 +4,15 @@ import {
   useActionData,
   ActionFunctionArgs,
   redirect,
+  LoaderFunctionArgs,
 } from 'react-router-dom';
 import ErrorMessage from '../components/ErrorMessage';
 import { addProduct } from '../services/ProductService';
+
+export async function loader({ params }: LoaderFunctionArgs) {
+  console.log(params.id);
+  return {};
+}
 
 export async function action({ request }: ActionFunctionArgs) {
   const data = Object.fromEntries(await request.formData());
@@ -26,14 +32,11 @@ export async function action({ request }: ActionFunctionArgs) {
 
 export default function EditProduct() {
   const error = useActionData() as string;
-  console.log(error);
 
   return (
     <>
       <div className="flex justify-between">
-        <h2 className=" text-4xl font-black text-slate-500">
-          Editar Producto
-        </h2>
+        <h2 className=" text-4xl font-black text-slate-500">Editar Producto</h2>
         <Link
           to="/"
           className="rounded-md bg-indigo-600 p-3 text-sm font-bold text-white shadow-sm hover:bg-indigo-500"
