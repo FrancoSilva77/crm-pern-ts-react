@@ -1,4 +1,4 @@
-import { safeParse } from 'valibot';
+import { coerce, number, parse, safeParse } from 'valibot';
 import axios from 'axios';
 import {
   DraftProductSchema,
@@ -6,6 +6,7 @@ import {
   ProductsSchema,
   Product,
 } from '../types';
+import { toBoolean } from '../utils';
 
 type productData = {
   [k: string]: FormDataEntryValue;
@@ -60,3 +61,22 @@ export async function getProductById(id: Product['id']) {
     console.log(error);
   }
 }
+
+export const updateProduct = async (data: productData, id: Product['id']) => {
+  try {
+    const NumberSchema = coerce(number(), Number);
+
+    const result = safeParse(ProductSchema, {
+      id,
+      name: data.name,
+      price: parse(NumberSchema, data.price),
+      availability: toBoolean(data.availability.toString()),
+    });
+    if (result.success) {
+      const url = `${import.meta.env.VITE_API_URL}/api/products/${id}`;
+      await axios.put(url, result.output)
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
