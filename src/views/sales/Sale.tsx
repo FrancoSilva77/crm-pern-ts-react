@@ -1,8 +1,10 @@
 import { useLoaderData } from 'react-router-dom';
 import ProductSale from '../../components/sales/ProductSale';
 import { Product } from '../../types';
+import useSale from '../../hooks/useSale';
 
 export default function Sale() {
+  const { addItem } = useSale();
   const products = useLoaderData() as Product[];
 
   return (
@@ -15,6 +17,7 @@ export default function Sale() {
             <ProductSale
               key={item.id}
               item={item}
+              addItem={addItem}
             />
           ))}
         </div>

@@ -14,3 +14,6 @@ export const ProductSchema = object({
 
 export const ProductsSchema = array(ProductSchema);
 export type Product = Output<typeof ProductSchema>;
+export type ProductSale = Product & {
+  quantity:number
+}
