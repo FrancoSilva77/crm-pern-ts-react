@@ -1,10 +1,12 @@
 import { createBrowserRouter } from 'react-router-dom';
 import Layout from './layouts/Layout';
+import LayoutSales from './layouts/LayoutSales';
 import Products, {
   loader as productsLoader,
   action as updateAvailabilityAction,
 } from './views/Products';
 import NewProduct, { action as newProductAction } from './views/NewProduct';
+import Sale from './views/sales/Sale';
 import EditProduct, {
   loader as editProductLoader,
   action as editProductAction,
@@ -36,6 +38,17 @@ export const router = createBrowserRouter([
       {
         path: 'productos/:id/eliminar' /* ROA Patter */,
         action: deleteProductAction,
+      },
+    ],
+  },
+  {
+    path: '/ventas',
+    element: <LayoutSales />,
+    children: [
+      {
+        index: true,
+        element: <Sale />,
+        loader: productsLoader
       },
     ],
   },
