@@ -3,6 +3,7 @@ import ProductSale from '../../components/sales/ProductSale';
 import { Product } from '../../types';
 import useSale from '../../hooks/useSale';
 import ContentSale from '../../components/sales/ContentSale';
+import TotalSale from '../../components/sales/TotalSale';
 
 export default function Sale() {
   const { addItem, sale, removeItem } = useSale();
@@ -25,10 +26,13 @@ export default function Sale() {
 
         <div className="">
           {sale.length ? (
-            <ContentSale
-              sale={sale}
-              removeItem={removeItem}
-            />
+            <>
+              <ContentSale
+                sale={sale}
+                removeItem={removeItem}
+              />
+              <TotalSale sale={sale} />
+            </>
           ) : (
             <p className="text-lg text-center">
               Aún no hay productos selecionados
