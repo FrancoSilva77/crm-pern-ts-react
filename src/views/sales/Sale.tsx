@@ -6,7 +6,7 @@ import ContentSale from '../../components/sales/ContentSale';
 import TotalSale from '../../components/sales/TotalSale';
 
 export default function Sale() {
-  const { addItem, sale, removeItem } = useSale();
+  const { addItem, sale, removeItem, placeSale } = useSale();
   const products = useLoaderData() as Product[];
 
   return (
@@ -31,7 +31,10 @@ export default function Sale() {
                 sale={sale}
                 removeItem={removeItem}
               />
-              <TotalSale sale={sale} />
+              <TotalSale
+                sale={sale}
+                placeSale={placeSale}
+              />
             </>
           ) : (
             <p className="text-lg text-center">

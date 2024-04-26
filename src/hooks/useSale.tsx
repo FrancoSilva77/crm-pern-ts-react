@@ -24,9 +24,14 @@ export default function useSale() {
     setSale(sale.filter((item) => item.id !== id));
   };
 
+  const placeSale = () => {
+    setSale([]);
+  };
+
   return {
     addItem,
     sale,
     removeItem,
+    placeSale
   };
 }
