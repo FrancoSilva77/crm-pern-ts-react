@@ -22,5 +22,6 @@ export default function useSale() {
 
   return {
     addItem,
+    sale
   };
 }
