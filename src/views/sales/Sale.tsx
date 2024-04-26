@@ -5,7 +5,7 @@ import useSale from '../../hooks/useSale';
 import ContentSale from '../../components/sales/ContentSale';
 
 export default function Sale() {
-  const { addItem, sale } = useSale();
+  const { addItem, sale, removeItem } = useSale();
   const products = useLoaderData() as Product[];
 
   return (
@@ -24,7 +24,16 @@ export default function Sale() {
         </div>
 
         <div className="">
-          <ContentSale sale={sale} />
+          {sale.length ? (
+            <ContentSale
+              sale={sale}
+              removeItem={removeItem}
+            />
+          ) : (
+            <p className="text-lg text-center">
+              Aún no hay productos selecionados
+            </p>
+          )}
         </div>
       </div>
     </>

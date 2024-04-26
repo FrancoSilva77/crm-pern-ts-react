@@ -20,8 +20,13 @@ export default function useSale() {
     }
   };
 
+  const removeItem = (id: ProductSale['id']) => {
+    setSale(sale.filter((item) => item.id !== id));
+  };
+
   return {
     addItem,
-    sale
+    sale,
+    removeItem,
   };
 }
