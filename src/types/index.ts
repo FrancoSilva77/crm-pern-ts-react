@@ -12,6 +12,11 @@ export const ProductSchema = object({
   availability: boolean(),
 });
 
+export const SaleSchema = object({
+  total: number(),
+  sale: string()
+})
+
 export const ProductsSchema = array(ProductSchema);
 export type Product = Output<typeof ProductSchema>;
 export type ProductSale = Product & {

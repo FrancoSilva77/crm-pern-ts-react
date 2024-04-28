@@ -1,6 +1,15 @@
 import { useMemo } from 'react';
+import { ActionFunctionArgs, Form, redirect } from 'react-router-dom';
 import { ProductSale } from '../../types';
 import { formatCurrency } from '../../utils';
+import { addSale } from '../../services/SaleService';
+
+export async function action({ request }: ActionFunctionArgs) {
+  const data = Object.fromEntries(await request.formData());
+  await addSale(data);
+  
+  return redirect('/ventas');
+}
 
 type TotalSaleProps = {
   sale: ProductSale[];
@@ -30,9 +39,32 @@ export default function TotalSale({ sale, placeSale }: TotalSaleProps) {
         >
           Cancelar venta
         </button>
-        <button className="bg-blue-600 p-2 text-white font-black">
-          Guardar venta
-        </button>
+
+        <Form
+          method="POST"
+          action="/ventas/nueva"
+          onSubmit={() => placeSale()}
+        >
+          <input
+            type="hidden"
+            id="total"
+            name="total"
+            value={totalAmount}
+          />
+
+          <input
+            type="hidden"
+            id="sale"
+            name="sale"
+            value={JSON.stringify(sale)}
+          />
+
+          <input
+            type="submit"
+            value="Guardar Venta"
+            className="bg-blue-600 w-full p-2 text-white font-black cursor-pointer"
+          />
+        </Form>
       </div>
     </>
   );

@@ -12,6 +12,7 @@ import EditProduct, {
   action as editProductAction,
 } from './views/EditProduct';
 import { action as deleteProductAction } from './components/ProductDetails';
+import { action as newSaleAction } from './components/sales/TotalSale';
 
 export const router = createBrowserRouter([
   {
@@ -48,8 +49,12 @@ export const router = createBrowserRouter([
       {
         index: true,
         element: <Sale />,
-        loader: productsLoader
+        loader: productsLoader,
       },
+      {
+        path: 'nueva',
+        action: newSaleAction
+      }
     ],
   },
 ]);
