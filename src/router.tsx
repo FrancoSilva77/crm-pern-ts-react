@@ -13,6 +13,7 @@ import EditProduct, {
 } from './views/EditProduct';
 import { action as deleteProductAction } from './components/ProductDetails';
 import { action as newSaleAction } from './components/sales/TotalSale';
+import Sales, { loader as salesLoader } from './views/sales/Sales';
 
 export const router = createBrowserRouter([
   {
@@ -52,9 +53,14 @@ export const router = createBrowserRouter([
         loader: productsLoader,
       },
       {
+        path: 'mostrar',
+        element: <Sales />,
+        loader: salesLoader,
+      },
+      {
         path: 'nueva',
-        action: newSaleAction
-      }
+        action: newSaleAction,
+      },
     ],
   },
 ]);

@@ -12,13 +12,32 @@ export const ProductSchema = object({
   availability: boolean(),
 });
 
-export const SaleSchema = object({
+export const DraftSaleSchema = object({
   total: number(),
-  sale: string()
-})
+  sale: string(),
+});
 
 export const ProductsSchema = array(ProductSchema);
 export type Product = Output<typeof ProductSchema>;
 export type ProductSale = Product & {
-  quantity:number
-}
+  quantity: number;
+};
+
+export const SaleSchema = object({
+  id: number(),
+  total: number(),
+  createdAt: string(),
+  saleProducts: array(
+    object({
+      id: number(),
+      quantity: number(),
+      product: object({
+        name: string(),
+      }),
+    })
+  ),
+});
+
+export const SalesSchema = array(SaleSchema);
+
+export type Sale = Output<typeof SaleSchema>;

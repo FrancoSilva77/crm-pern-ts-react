@@ -1,4 +1,4 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet, Link } from 'react-router-dom';
 import Navigate from '../components/ui/Navigate';
 
 export default function LayoutSales() {
@@ -12,6 +12,13 @@ export default function LayoutSales() {
         </div>
         <Navigate />
       </header>
+
+      <Link
+        to="/ventas/mostrar"
+        className="block mt-5 text-center text-xl bg-slate-800 max-w-32 text-white mx-auto p-2 hover:bg-slate-950 font-bold"
+      >
+        Ver Ventas
+      </Link>
 
       <main className="mt-10 mx-auto max-w-6xl  p-10 bg-white shadow">
         <Outlet />
