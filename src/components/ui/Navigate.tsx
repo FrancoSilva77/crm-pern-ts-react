@@ -13,7 +13,7 @@ export default function Navigate() {
         to="/ventas"
         className="text-white text-xl font-bold p-2 hover:border hover:border-white"
       >
-        Ventas
+        Venta
       </Link>
     </div>
   );
